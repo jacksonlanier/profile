@@ -1,11 +1,14 @@
 body {
     margin: 0;
-    background: rgb(48, 158, 209);
-    text-align: center;
+    background: skyblue;
+    font-family: Verdana (sans-serif);
 }
 h1 {
     color: rgb(14, 148, 43);
+    font-size: larger;
+    margin-top: 25px;
 }
 p {
     color: rgb(14, 148, 43);
+    font-size: larger;
 }
