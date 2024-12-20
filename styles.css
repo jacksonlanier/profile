@@ -2,10 +2,11 @@ body {
     margin: 0;
     background: rgb(76, 22, 201);
     font-family: Verdana (sans-serif);
+    text-align: center;
 }
 h1 {
     color: rgb(11, 177, 47);
-    font-size: large;
+    font-size: 20;
     margin: 25px;
 }
 p {
