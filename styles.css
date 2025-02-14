@@ -22,14 +22,10 @@ h3 {
 p {
     color: #36454F;
     font-size: larger;
-    margin: 25px;
-}
-.oval-image {
-  width: 200px;
-  height: 200px;
-  border-radius: 50%;
-  background-image: url(https://drive.google.com/file/d/1mmqNfllzzOEvoUfC5lKzX-sGB3e7yWvT/view?usp=drive_link);
-  background-size: cover;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 1rem;
+    box-sizing: border-box;
 }
 .container {
     float: right;
