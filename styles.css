@@ -24,11 +24,6 @@ p {
     font-size: larger;
     margin: 25px;
 }
-.container {
-    padding-left: 20px;
-    padding-top: 20%;
-    float: right;
-  }
 .oval-image {
   width: 200px;
   height: 200px;
