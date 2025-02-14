@@ -27,10 +27,9 @@ p {
 .text {
   display: flex;
   align-items: center;
-  float: left;
 }
 .container {
     padding-left: 20px;
     padding-top: 20%;
-    justify-content: center
+    float: right;
   }
