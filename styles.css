@@ -31,3 +31,6 @@ p {
   background-image: url(https://drive.google.com/file/d/1mmqNfllzzOEvoUfC5lKzX-sGB3e7yWvT/view?usp=drive_link);
   background-size: cover;
 }
+.container {
+    float: right;
+}
