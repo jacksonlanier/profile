@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>PDF Embed</title>
+<style>
+  #pdf-container {
+    width: 90%; /* Adjust as needed */
+    margin: 20px auto; /* Center the container */
+    border: 1px solid #ccc; /* Optional border */
+    overflow: hidden; /* Hide iframe scrollbars */
+  }
+
+  iframe {
+    width: 100%;
+    height: 800px; /* Initial height - adjust as needed */
+    border: none;
+    display: block; /* Prevents a small gap below the iframe */
+  }
+
+  #download-link {
+    display: block;
+    margin-top: 10px;
+    text-align: center;
+  }
+</style>
+</head>
+<body>
+
+<div id="pdf-container">
+  <iframe id="pdf-iframe" src="JLanier_CaseStudies.pdf"></iframe>
+</div>
+
+<a id="download-link" href="JLanier_CaseStudies.pdf" download>Download PDF</a>
+
+<script>
+  const iframe = document.getElementById('pdf-iframe');
+  const container = document.getElementById('pdf-container');
+
+  iframe.onload = function() {
+    // Get the iframe's content document
+    const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+
+    // Adjust iframe height to fit content (if possible - depends on PDF viewer)
+    // This is the most challenging part as cross-origin restrictions often apply
+    // and prevent you from accessing the iframe's content.  It is often not possible.
+
+    // Try to get the height of the PDF content. This will likely fail due to cross-origin restrictions.
+    try {
+        const pdfViewer = iframeDoc.querySelector('#viewer'); // Common PDF viewer ID
+        if (pdfViewer) {
+            iframe.height = pdfViewer.scrollHeight + 'px';
+        }
+    } catch (error) {
+        console.warn("Cannot adjust iframe height due to cross-origin restrictions:", error);
+    }
+
+    // Fallback: If you can't dynamically adjust height, set a reasonable fixed height.
+    // The user will have to scroll within the iframe.
+    // iframe.height = 800 + 'px'; // Or whatever height makes sense.
+  };
+
+    // Make links within the PDF open in a new tab.
+    // The code below is also affected by cross-origin restrictions.
+    // It may or may not work depending on how the PDF is embedded.
+    try {
+        iframe.onload = () => {
+            const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+            const links = iframeDoc.querySelectorAll('a');
+
+            links.forEach(link => {
+                link.target = '_blank';
+            });
+        };
+    } catch(error) {
+        console.warn("Cannot modify links due to cross-origin restrictions:", error);
+    }
+</script>
+
+</body>
+</html>
