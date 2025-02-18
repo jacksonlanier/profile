@@ -4,17 +4,18 @@
 <title>PDF Embed</title>
 <style>
   #pdf-container {
-    width: 90%; /* Adjust as needed */
-    margin: 20px auto; /* Center the container */
-    border: 1px solid #ccc; /* Optional border */
+    width: 90%;
+    margin: 20px auto;
+    border: 1px solid #ccc;
     overflow: hidden; /* Hide iframe scrollbars */
+    position: relative; /* For potential overlay elements if needed later */
   }
 
   iframe {
     width: 100%;
     height: 800px; /* Initial height - adjust as needed */
     border: none;
-    display: block; /* Prevents a small gap below the iframe */
+    display: block;
   }
 
   #download-link {
@@ -34,17 +35,27 @@
 
 <script>
   const iframe = document.getElementById('pdf-iframe');
-  const container = document.getElementById('pdf-container');
+  const container = document.getElementById('pdf-container'); // Get the container
 
   iframe.onload = function() {
-    // Get the iframe's content document
     const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
 
-    // Adjust iframe height to fit content (if possible - depends on PDF viewer)
-    // This is the most challenging part as cross-origin restrictions often apply
-    // and prevent you from accessing the iframe's content.  It is often not possible.
+    // Same-Origin Check and Link Modification
+    if (iframeDoc) {
+      try {
+        const links = iframeDoc.querySelectorAll('a');
 
-    // Try to get the height of the PDF content. This will likely fail due to cross-origin restrictions.
+        links.forEach(link => {
+          link.target = '_blank';
+        });
+      } catch (error) {
+        console.warn("Error accessing links in iframe (likely cross-origin):", error);
+      }
+    } else {
+      console.warn("Iframe content is not accessible (likely cross-origin).");
+    }
+
+    // Dynamic Height Adjustment (Challenging - Same as before)
     try {
         const pdfViewer = iframeDoc.querySelector('#viewer'); // Common PDF viewer ID
         if (pdfViewer) {
@@ -54,26 +65,9 @@
         console.warn("Cannot adjust iframe height due to cross-origin restrictions:", error);
     }
 
-    // Fallback: If you can't dynamically adjust height, set a reasonable fixed height.
-    // The user will have to scroll within the iframe.
-    // iframe.height = 800 + 'px'; // Or whatever height makes sense.
   };
 
-    // Make links within the PDF open in a new tab.
-    // The code below is also affected by cross-origin restrictions.
-    // It may or may not work depending on how the PDF is embedded.
-    try {
-        iframe.onload = () => {
-            const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
-            const links = iframeDoc.querySelectorAll('a');
 
-            links.forEach(link => {
-                link.target = '_blank';
-            });
-        };
-    } catch(error) {
-        console.warn("Cannot modify links due to cross-origin restrictions:", error);
-    }
 </script>
 
 </body>
