@@ -22,6 +22,18 @@
   body {
     background: #f1f0f7;
   }
+   button {
+     font-family: Arial, Helvetica, sans-serif; 
+     background-color: purple;
+      color: grey;
+      padding: 10px 20px;
+      border: none;
+      cursor: pointer; /* Make it look clickable */
+    }
+
+    button:hover { /* Style on hover */
+      background-color: darkpurple;
+    }
 </style>
 </head>
 <body>
@@ -29,6 +41,8 @@
 <div id="pdf-container">
   <iframe id="pdf-iframe" src="JLanier_CaseStudies.pdf"></iframe>
 </div>
+
+<button onclick="window.location.href='index.html'">Return to Jackson's Profile</button>
 
 <script>
   const iframe = document.getElementById('pdf-iframe');
