@@ -24,7 +24,7 @@ p {
     color: #36454F;
     font-size: larger;
     margin: 0 auto;
-    width: 80%;
+    width: 60%;
     text-align: center;
    
 }
@@ -50,7 +50,6 @@ img {
   .container {
   display: flex;
   justify-content: center; /* Horizontally center */
-  align-items: bottom; /* Vertically center */
   height: 60px; /* Or whatever height you want for the container */
 }
 .contact-links {
