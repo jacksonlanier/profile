@@ -1,46 +1,58 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Case Studies</title>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js"></script>
-  <style>
-    canvas{
-      border: 1px solid black;
-    }
-  </style>
+    <title>Case Studies</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js"></script>
+    <style>
+        canvas {
+            border: 1px solid black;
+            display: block; /* Prevent small gap below canvas */
+            margin-bottom: 10px; /* Add some spacing between canvases */
+        }
+        #pdf-container { /* Container for all canvases */
+            display: flex;
+            flex-direction: column; /* Arrange canvases vertically */
+            align-items: center; /* Center canvases horizontally (optional) */
+        }
+    </style>
 </head>
 <body>
-  <canvas id="pdfCanvas"></canvas>
+    <div id="pdf-container"></div>  </body>
 
-  <script>
-    pdfjsLib.disableWorker = true;
+    <script>
+        pdfjsLib.disableWorker = true;
 
-    const canvas = document.getElementById('pdfCanvas');
-    const context = canvas.getContext('2d');
-    const renderPDF = async (pdfUrl) => {
-      try {
-        const loadingTask = pdfjsLib.getDocument(pdfUrl);
-        const pdf = await loadingTask.promise;
+        const container = document.getElementById('pdf-container');
 
-        const page = await pdf.getPage(1);
+        const renderPDF = async (pdfUrl) => {
+            try {
+                const loadingTask = pdfjsLib.getDocument(pdfUrl);
+                const pdf = await loadingTask.promise;
 
-        const viewport = page.getViewport({ scale: 1.5 });
+                for (let i = 1; i <= pdf.numPages; i++) { // Loop through all pages
+                    const page = await pdf.getPage(i);
+                    const viewport = page.getViewport({ scale: 1.5 });
 
-        canvas.height = viewport.height;
-        canvas.width = viewport.width;
+                    const canvas = document.createElement('canvas'); // Create a new canvas for each page
+                    canvas.height = viewport.height;
+                    canvas.width = viewport.width;
+                    container.appendChild(canvas); // Add canvas to the container
 
-        const renderContext = {
-          canvasContext: context,
-          viewport: viewport
+                    const context = canvas.getContext('2d');
+                    const renderContext = {
+                        canvasContext: context,
+                        viewport: viewport
+                    };
+
+                    await page.render(renderContext).promise;
+                }
+            } catch (error) {
+                console.error('Error rendering PDF:', error);
+            }
         };
 
-        await page.render(renderContext).promise;
-      } catch (error) {
-        console.error('Error rendering PDF:', error);
-      }
-    };
-    renderPDF('JLanier_CaseStudies.pdf');
-  </script>
+        renderPDF('JLanier_CaseStudies.pdf');
+    </script>
 </body>
 </html>
