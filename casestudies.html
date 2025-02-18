@@ -1,40 +1,46 @@
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Embedded PDF</title>
-        <script src="https://mozilla.github.io/pdf.js/build/pdf.js"></script> 
-    </head>
-    <body>
-        <h1>Project Case Studies</h1>
-        <canvas id="pdfCanvas"></canvas>
-        <script>
-          // Disable worker to avoid issues with some browsers
-          pdfjsLib.disableWorker = true;
-        
-          // Get the canvas element
-          const canvas = document.getElementById('pdfCanvas');
-          const context = canvas.getContext('2d');
-        
-          // Load the PDF
-          pdfjsLib.getDocument('JLanier_CaseStudies.pdf').promise.then(function(pdf) {
-            // Get the first page
-            pdf.getPage(1).then(function(page) {
-              const viewport = page.getViewport({scale: 1}); // Adjust scale as needed
-        
-              canvas.height = viewport.height;
-              canvas.width = viewport.width;
-        
-              const renderContext = {
-                canvasContext: context,
-                viewport: viewport
-              };
-              page.render(renderContext).promise.then(function() {
-                console.log('Page rendered');
-              });
-            });
-          });
-        </script>
-    </body>
+<html>
+<head>
+  <title>Case Studies</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js"></script>
+  <style>
+    canvas{
+      border: 1px solid black;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="pdfCanvas"></canvas>
+
+  <script>
+    pdfjsLib.disableWorker = true;
+
+    const canvas = document.getElementById('pdfCanvas');
+    const context = canvas.getContext('2d');
+    const renderPDF = async (pdfUrl) => {
+      try {
+        const loadingTask = pdfjsLib.getDocument(pdfUrl);
+        const pdf = await loadingTask.promise;
+
+        const page = await pdf.getPage(1);
+
+        const viewport = page.getViewport({ scale: 1.5 });
+
+        canvas.height = viewport.height;
+        canvas.width = viewport.width;
+
+        const renderContext = {
+          canvasContext: context,
+          viewport: viewport
+        };
+
+        await page.render(renderContext).promise;
+      } catch (error) {
+        console.error('Error rendering PDF:', error);
+      }
+    };
+    renderPDF('JLanier_CaseStudies.pdf');
+  </script>
+</body>
 </html>
