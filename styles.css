@@ -17,7 +17,7 @@ h2 {
 h3 {
     color: #36454F;
     font-size: 30px;
-    margin: 50px 0 10 0px;
+    margin-top: 50px;
 }
 h4 {
     color: #36454F;
@@ -115,6 +115,6 @@ h4 {
 #projectsheader {
     color: #36454F;
     font-size: 30px;
-    margin: 100px 0 10 0px;
+    margin: 100px 0 10px 0;
 }
 
