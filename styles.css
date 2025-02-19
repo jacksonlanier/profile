@@ -19,6 +19,10 @@ h3 {
     font-size: 30px;
     margin: 50px 0 10 0px;
 }
+h4 {
+    color: #36454F;
+    font-size: 25px;
+}
 p {
     color: #36454F;
     font-size: larger;
@@ -43,7 +47,8 @@ p {
     border-radius: 5px;
     cursor: pointer;
     font-size: 16px;
-    transition: background-color 0.3s ease; 
+    transition: background-color 0.3s ease;
+    margin-top: 15px;
     }
   .container {
   display: flex;
@@ -73,15 +78,30 @@ p {
   color: #8072e6;
   border-color: #906dec;
 }
+.row {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  width: 90%;
+  margin: 0 auto;
+  gap: 20px;
+}
 .column {
-  float: left;
-  width: 33.33%;
+  flex: 1;
   padding: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-.row::after {
-  content: "";
-  clear: both;
-  display: table;
+.column img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin-bottom: 5px;
 }
-
+.stack-column {
+  flex-direction: column;
+  align-items: center;
+}
 
