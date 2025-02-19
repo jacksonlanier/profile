@@ -137,6 +137,13 @@ h4 {
   border-radius: 10px;
 }
 
+#instacartimage {
+  margin-top: 11px
+}
+#videogameimage {
+  margin-top: 19px;
+}
+
 .quadrant h4 {
   margin-bottom: 10px;
 }
