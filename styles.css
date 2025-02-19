@@ -54,25 +54,26 @@ img {
 }
 .contact-links {
   display: flex; /* Arrange links horizontally */
-  gap: 20px; /* Space between links */
+  justify-content: center;
+  margin-left: -70px;
+  gap: 50px;
 }
 .contact-links a {
-  color: #333; /* Dark gray text color */
+  color: #36454F; /* Dark gray text color */
   text-decoration: none; /* Remove underlines */
-  font-weight: 500; /* Slightly bolder font */
+  font-weight: 600; /* Slightly bolder font */
   transition: color 0.3s ease; /* Smooth color transition on hover */
   padding: 8px 12px; /* Add some padding around the link text */
   border-radius: 5px; /* Rounded corners */
-  border: 1px solid transparent; /* Add a transparent border for hover effect */
+  border: 1px solid #e0e0e0; /* Light gray border */
+    background-color: #f8f8f8; /* Very light gray background color (optional) */
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow (optional) */
+    display: inline-block; /* Needed for padding to work correctly */
 }
 
 .contact-links a:hover {
-  color: #007bff; /* Blue color on hover (or your primary color) */
-  border-color: #007bff; /* Blue border on hover */
+  color: #8072e6;
+  border-color: #906dec;
 }
-.contact-links a + a::before { /* Selects all <a> after another <a> */
-  content: "|"; /* The separator character */
-  margin: 0 10px; /* Adjust spacing around separator */
-  color: #ccc; /* Light gray color for separator */
-}
+
 
