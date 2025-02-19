@@ -169,4 +169,20 @@ h4 {
     transition: background-color 0.3s ease;
     margin-top: 15px;
 }
+a {
+  color: inherit; 
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+a:hover {
+    color: #0056b3;
+}
+#links {
+    color: #36454F;
+    font-size: larger;
+    margin: 20px auto;
+    width: 60%;
+    text-align: center; 
+}
 
