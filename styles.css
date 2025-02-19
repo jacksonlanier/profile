@@ -107,9 +107,14 @@ h4 {
 }
 #portdescription {
     color: #36454F;
-    font-size: 20px;
+    font-size: 16px;
     margin: 10px auto;
     width: 80%;
     text-align: center; 
+}
+#projectsheader {
+    color: #36454F;
+    font-size: 30px;
+    margin: 100px 0 10 0px;
 }
 
