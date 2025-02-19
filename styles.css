@@ -23,10 +23,10 @@ h4 {
     color: #36454F;
     font-size: 25px;
 }
-p {
+.aboutme {
     color: #36454F;
     font-size: larger;
-    margin: 0 auto;
+    margin: 10px auto;
     width: 60%;
     text-align: center;  
 }
@@ -103,5 +103,12 @@ p {
 .stack-column {
   flex-direction: column;
   align-items: center;
+}
+#portdescription {
+    color: #36454F;
+    font-size: 20px;
+    margin: 10px auto;
+    width: 80%;
+    text-align: center; 
 }
 
