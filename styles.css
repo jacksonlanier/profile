@@ -126,7 +126,6 @@ h4 {
 }
 
 .quadrant {
-  border: 1px solid #ccc;
   padding: 20px;
   text-align: center;
 }
@@ -135,6 +134,7 @@ h4 {
   max-width: 100%;
   height: auto;
   margin-bottom: 10px;
+  border-radius: 10px;
 }
 
 .quadrant h4 {
