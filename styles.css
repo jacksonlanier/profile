@@ -138,7 +138,7 @@ h4 {
 }
 
 #instacartimage {
-  margin-top: 11px
+  margin-top: 0px
 }
 #videogameimage {
   margin-top: 19px;
@@ -149,7 +149,12 @@ h4 {
 }
 
 .quadrant p {
-  margin-bottom: 15px;
+    margin-bottom: 15px;
+    color: #36454F;
+    font-size: 16px;
+    margin: 10px auto;
+    width: 80%;
+    text-align: center;
 }
 
 .quadrant button {
