@@ -27,10 +27,6 @@ body {
     background-color: #ddd;
     color: black;
 }
-.topnav a.active {
-    background-color: #93e08a;
-    color: white;
-}
 /* Media query for smaller screens - make it horizontal or collapse */
 @media (max-width: 768px) {
     .topnav {
