@@ -65,5 +65,48 @@
             <a href="mailto:jacksonlanier94@gmail.com">jacksonlanier94@gmail.com</a>
             <a href="www.linkedin.com/in/jackson-lanier">LinkedIn</a>
         </div>
+        <script>
+        // Written with AI Assistance
+        // Get all the navigation links
+        const navLinks = document.querySelectorAll('.topnav a');
+        
+        // Add an event listener to the window's scroll event
+        window.addEventListener('scroll', () => {
+        let currentSection = ''; // Initialize current section
+        
+        // Get the current scroll position
+        const scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
+        
+        // Iterate through the sections and find the one that's currently in view
+        document.querySelectorAll('section').forEach(section => {
+          const sectionTop = section.offsetTop;
+          const sectionHeight = section.offsetHeight;
+        
+          if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+            currentSection = section.id;
+          }
+        });
+        
+        // Remove the "active" class from all links
+        navLinks.forEach(link => link.classList.remove('active'));
+        
+        // Add the "active" class to the link that corresponds to the current section
+        navLinks.forEach(link => {
+          if (link.getAttribute('href').slice(1) === currentSection) {
+            link.classList.add('active');
+          }
+        });
+        });
+        
+        // Optional: Add active class to About section on initial load
+        window.addEventListener('DOMContentLoaded', () => {
+            navLinks.forEach(link => {
+                if (link.getAttribute('href').slice(1) === 'aboutme') {
+                    link.classList.add('active');
+                }
+            });
+        });
+        
+        </script>
     </body>
 </html>
