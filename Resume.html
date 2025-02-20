@@ -1,0 +1,93 @@
+<!--Written with AI assistance-->
+<!DOCTYPE html>
+<html>
+<head>
+<title>PDF Embed</title>
+<style>
+  #pdf-container {
+    width: 90%;
+    margin: 20px auto;
+    border: 1px solid #ccc;
+    overflow: hidden; /* Hide iframe scrollbars */
+    position: relative; /* For potential overlay elements if needed later */
+  }
+
+  iframe {
+    width: 100%;
+    height: 800px; /* Initial height - adjust as needed */
+    border: none;
+    display: block;
+  }
+
+  body {
+    background: #f1f0f7;
+  }
+   button {
+     font-family: Arial, Helvetica, sans-serif; 
+     background-color: #969cd6;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px; /* Rounded corners */
+  cursor: pointer;
+  font-size: 16px; /* Adjust font size */
+  transition: background-color 0.3s ease; /* Smooth transition on hover */
+    }
+  .container {
+  display: flex;
+  justify-content: center; /* Horizontally center */
+  align-items: bottom; /* Vertically center */
+  height: 60px; /* Or whatever height you want for the container */
+}
+
+</style>
+</head>
+<body>
+
+<div id="pdf-container">
+  <iframe id="pdf-iframe" src="Lanier_Jackson_Resume.pdf"></iframe>
+</div>
+
+<div class="container">
+<button onclick="window.location.href='index.html'">Return to Profile</button>
+</div>
+
+<script>
+  const iframe = document.getElementById('pdf-iframe');
+  const container = document.getElementById('pdf-container'); // Get the container
+
+  iframe.onload = function() {
+    const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+
+    // Same-Origin Check and Link Modification
+    if (iframeDoc) {
+      try {
+        const links = iframeDoc.querySelectorAll('a');
+
+        links.forEach(link => {
+          link.target = '_blank';
+        });
+      } catch (error) {
+        console.warn("Error accessing links in iframe (likely cross-origin):", error);
+      }
+    } else {
+      console.warn("Iframe content is not accessible (likely cross-origin).");
+    }
+
+    // Dynamic Height Adjustment (Challenging - Same as before)
+    try {
+        const pdfViewer = iframeDoc.querySelector('#viewer'); // Common PDF viewer ID
+        if (pdfViewer) {
+            iframe.height = pdfViewer.scrollHeight + 'px';
+        }
+    } catch (error) {
+        console.warn("Cannot adjust iframe height due to cross-origin restrictions:", error);
+    }
+
+  };
+
+
+</script>
+
+</body>
+</html>
